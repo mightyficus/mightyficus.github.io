@@ -1,0 +1,32 @@
+<div class="navbar navbar-expand-lg bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="#">Cooper Hopkin</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle Navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% for item in site.data.navigation %}
+                    {% if item.category == "main" %}
+                        {% if item.dropdown == "True" %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ item.name}}</a>
+                                <ul class="dropdown-menu">
+                                {% for sub_item in site.data.navigation %}
+                                    {% if sub_item.category == item.name %}
+                                        <li><a class="dropdown-item {% if page.url == sub_item.link %}active{% endif %}" href="{{ sub_item.link }}">{{ sub_item.name }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link text-white" {% if page.url == item.link %} aria-current="page" {% endif %} href="{{item.link}}">{{ item.name }}</a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

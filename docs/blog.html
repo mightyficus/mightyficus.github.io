@@ -1,0 +1,19 @@
+---
+layout: default
+title: Blog
+---
+<div class="row align-items-left">
+    <div class="col p-4">
+        <h1>Latest Posts</h1>
+    </div>
+</div>
+<div class="row align-items-left">
+    <ul>
+        {% for post in site.posts %}
+            <li>
+                <h2 class="px-4"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+                <div class="ps-4"> {{ post.excerpt }} </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

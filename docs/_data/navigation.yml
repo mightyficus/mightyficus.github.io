@@ -1,0 +1,20 @@
+- name: Resume
+  category: main
+  link: /index.html
+  dropdown: "False"
+- name: Code Examples
+  category: main
+  link: "#"
+  dropdown: "True"
+- name: Python Code
+  category: Code Examples
+  link: /pythonsnippets.html
+  dropdown: "False"
+- name: Bash Scripts
+  category: Code Examples
+  link: /bashscripts.html
+  dropdown: "False"
+- name: Blog Posts
+  category: main
+  link: /blog.html
+  dropdown: "False"
