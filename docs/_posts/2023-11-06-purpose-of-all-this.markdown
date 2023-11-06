@@ -32,7 +32,10 @@ if __name__ == "__main__":
     main()
 {% endhighlight %}
 
-
+{% assign image_files = site.static_files | where: "image", true %}
+{% for myimage in image_files  %}
+        {{ myimage.path }}
+{% endfor %}
 
 
 [ben-eater]: https://www.youtube.com/beneater
