@@ -30,6 +30,15 @@ url: https://www.mightyficus.dev # the base hostname & protocol for your site, e
 #twitter_username: jekyllrb
 github_username:  coopman66
 
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  auto_ids: true
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
 # Build settings
 remote_theme: pages-themes/midnight@v0.2.0
 plugins:
