@@ -2,3 +2,18 @@
 ---
 @import "main";
 @import "jekyll-theme-midnight";
+
+.img-left {
+    float: left;
+    margin: 1em;
+}
+
+.img-center {
+    float: center;
+    margin: 1em;
+}
+
+.img-right {
+    float: right;
+    margin: 1em;
+}
