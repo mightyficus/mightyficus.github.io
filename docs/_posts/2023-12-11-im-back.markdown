@@ -1,0 +1,40 @@
+---
+layout: post
+title:  "Told You I Was Bad at This"
+date:   2023-12-11 13:45:00 -0700
+categories: jekyll update
+author: Cooper Hopkin
+---
+
+I said it my first post, and I'll say it again. I'm _really_ bad at making blogs. I can blame lots of things (and I probably will), but in the end it all comes down to that- I'm bad at making posts.
+
+To be fair (here come the excuses), this is an extremely busy time of year. Fall semester finals, winter break imaging at work, and last but not least: Christmas. I got married fairly recently, and while that's been incredible, it also means about twice the number of presents to get/make. Don't get me wrong, I actually really enjoy giving gifts. I'm even making several of the presents I'm giving this year with my new-found soldering skills. But it's time consuming, and I'm starting to get down to the wire. I've finished one present, in the middle of making another, and haven't even started on actually creating one of the more complicated presents I'm planning on.
+
+Along with soldering, I've also started getting into working with microcontrollers. I'm using a Raspberry Pi Pico, since it's a little bit more familiar to me (I've been working with Raspberry Pis for a while, even though I know a microcontroller is a different beast altogether), and I'm much more comfortable with Python right now than I am with C++. I actually used to be pretty good with C++; it was my first programming language[^1]. But regardless, MicroPython (the Python flavor that microcontrollers use) is a lot easier for me. The project is a bit complicated, because if I want to make it look really nice, I'm going to want to make a custor PCB for it, or at least a solderable breadboard, with a 3D printed case.
+
+I'm not going to say what the projects are, on the astronomically small likelihood that my mother or one of my siblings has happened upon my blog. Uh, hi Mom?
+
+Anyways, yeah. Busy. I'm excited, because I'm learning all of these new things. But I'm starting to get worried that I'm going to go to my Mother, who Gave Birth To Me<sup>TM</sup>, and tell her that I only have a prototype for her present. I mean, it's not the end of the world, but I'd like to give my Mom a nice, finished gift on Christmas. Ugh. I should've just gotten her a book.
+
+Anyways, the moral of this story is to not get overzealous when you're planning out your Christmas gifts, especially if you're doing a homemade gift. Think it's going to take 2 days? Plan on at least a week, if not more. If the instructions for your soldering project looks like it was translated from Chinese using Google Translate, plan on even more. And maybe think about getting an extra kit. I definitely, definitely do not know this from painful experience.
+
+Oh yeah, I'm also trying to do Advent of Code (Note to self- look up definition of masochist).
+
+Merry Christmas, you filthy animals.
+
+-- Cooper
+
+Hello World in C++, just to show I can:
+{% highlight c++ %}
+#include <iostream>
+
+int main(){
+    std::cout << "Hello World!";
+
+    return 0;
+}
+{% endhighlight %}
+
+<br>
+
+[^1]: Well, technically Scratch is my first "language", but C++ was the first one I learned with actual syntax. I know Scratch is a real language. Supposedly you can create a C compiler in it. But as far as I'm concerned, that's black magic, and I'm not planning on selling my soul to the Scratch gods for that power just yet. So I'm just going to stick with C++ as my first language.

@@ -2,3 +2,16 @@
     color: rgb(99, 99, 99);
     font-weight: 400;
 }
+
+.footnotes {
+    font-size:12px;
+    margin: 10px -25px;
+}
+
+a.footnote:before {
+    content: "[";
+}
+
+a.footnote:after {
+    content: "]";
+}
