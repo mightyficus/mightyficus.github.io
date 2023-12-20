@@ -2,7 +2,7 @@
 layout: post
 title:  "Saintcon, Minibadges, and Soldering, Oh My!"
 date:   2023-11-06 08:00:00 -0700
-categories: jekyll update
+categories: general
 author: Cooper Hopkin
 ---
 
@@ -97,11 +97,6 @@ This program should print out Hello World. I hope. ]]
     <-              Decrement loop counter in C0
 ]
 
-Current Results:
-C0  C1  C2  C3  C4  C5  C6
-0   0   72  104 88  32  8
-
-Currently at C0 = 0
 >>.                 C2 contains 72 which is H
 >---.               Subtract 3 from C3 to get 101 which is e; print
 ++++ +++..          Add 7 to C3 to get 108 which is l; print
