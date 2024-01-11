@@ -10,9 +10,9 @@
   category: Code Examples
   link: /pythonsnippets.html
   dropdown: "False"
-- name: Bash Scripts
+- name: Scripts
   category: Code Examples
-  link: /bashscripts.html
+  link: /scripts.html
   dropdown: "False"
 - name: Blog Posts
   category: main

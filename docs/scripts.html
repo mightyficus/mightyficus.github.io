@@ -1,0 +1,93 @@
+---
+layout: default
+title: Scripts
+---
+<h1 class="p-4">Bash Scripts</h1>
+<h3>Create Incremental Backup with Rsync</h3>
+{% highlight shell %}
+#!/bin/bash
+# Create incremental backups using rsync with hard links
+# Current impementation meant for daily backups
+
+# TODO: Implement arguments for customizability- number of backups, date interval, source and destination folders
+
+current_date=$(date)
+to_backup=("/etc" "/home" "/root" "/var" "/srv" "/opt")
+# number of backups to keep
+backup_backlog=10
+
+# Change to backup folder
+cd /backup
+
+# rotate backups
+# wildcard allows for missing days due to downtime (using async scheduler)
+rm -rf backup.*.${backup_backlog}
+for (( log_number=$backup_backlog; log_number >= 2; log_number-- )); do
+    log_date=$(ls | grep backup.*.$((${log_number}-1)) | cut -d'.' -f 2)
+    # If the destination folder doesn't have the max number of backups (backup_backlog), filenaming gets weird
+    # This makes sure that if any of the backup directories are missing, an empty file with the right name is added
+    # New empty file keeps naming convention consistent
+    if [ ! -d "backup.${log_date}.$(( ${log_number} - 1 ))" ]; then
+        touch "backup.$(date --date="$(date) -${log_number} days" '+%F').$(( ${log_number} - 1 ))"
+        log_date=$(ls | grep backup.*.$((${log_number}-1)) | cut -d'.' -f 2)
+    fi
+    mv "backup.${log_date}.$(( ${log_number} - 1 ))" "backup.${log_date}.${log_number}"
+done
+cp -al "backup.$(ls | grep backup.*.0 | cut -d'.' -f 2).0" "backup.$(ls | grep backup.*.0 | cut -d'.' -f 2).1"
+
+# make new backup
+rsync -a --dry-run --delete --exclude="/home/*/.cache" ${to_backup[@]} "backup.$(ls | grep backup.*.0 | cut -d'.' -f 2).0"
+# Keeps naming convention consistent
+mv "backup.$(ls | grep backup.*.0 | cut -d'.' -f 2).0" "backup.$(date '+%F').0/"
+{% endhighlight %}
+
+<h1 class="p-4">Windows Batch Scripts</h1>
+<h3>Delete files older than X days</h3>
+{% highlight batchfile %}
+
+REM Windows batch file to delete all files in a specific folder older than x days
+REM Based on script from https://www.howtogeek.com/131881/how-to-delete-files-older-than-x-days-on-windows/
+
+REM Get folder to clear out and time restriction
+set /p "folder=Enter folder to clear out: "
+
+REM Check if folder exists
+if not exist %folder%\* goto notexist
+
+REM Enter how old in days the file must be to be deleted then lists the files in the folder
+REM If the input is invalid, catch it and quit
+set /p "UserInput=How old should the deleted files be (in days)? "
+set /a days=%UserInput%
+
+if %days% EQU 0 (
+	echo Deletion Failed. Check Syntax.
+	pause
+	goto quit
+) else (
+    forfiles -p %folder% -s -m *.* -d -%days% -c "cmd /c echo @file"
+	pause
+)
+
+REM Ask user if they want to delete the listed files
+set /p "choice=Delete these files? [Y/N]: "
+
+if /I %choice%=="Y" goto delete
+goto nodelete
+
+:nodelete
+echo Not deleting files.
+goto quit
+
+:delete
+REM Delete files in specified folder
+echo Deleting files
+forfiles -p %folder% -s -m *.* -d -(Number of days) -c "cmd /c del @path"
+goto quit
+
+:notexist
+echo Folder does not exist
+goto quit
+
+:quit
+pause
+{% endhighlight %}
