@@ -41,7 +41,18 @@ rsync -a --dry-run --delete --exclude="/home/*/.cache" ${to_backup[@]} "backup.$
 mv "backup.$(ls | grep backup.*.0 | cut -d'.' -f 2).0" "backup.$(date '+%F').0/"
 {% endhighlight %}
 
-<h1 class="p-4">Windows Batch Scripts</h1>
+<h1 class="p-4">Windows Scripts</h1>
+<h3>Find Listening TCP Services</h3>
+{% highlight powershell %}
+# Find all open Ports and report the local address, local port, remote address, remote port, and Owning Process
+
+$connections = Get-NetTCPConnection | sort-object State, LocalAddress, OwningProcess | Where-Object { $_.LocalAddress -notlike '*:*' }
+$connections | Format-Table -AutoSize LocalAddress, LocalPort, RemoteAddress, RemotePort, State, @{
+    Label = "Owning Process"
+    Expression={(Get-Process -Id $_.OwningProcess)}
+}
+{% endhighlight %}
+
 <h3>Delete files older than X days</h3>
 {% highlight batchfile %}
 
