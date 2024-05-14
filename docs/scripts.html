@@ -40,6 +40,49 @@ rsync -a --dry-run --delete --exclude="/home/*/.cache" ${to_backup[@]} "backup.$
 # Keeps naming convention consistent
 mv "backup.$(ls | grep backup.*.0 | cut -d'.' -f 2).0" "backup.$(date '+%F').0/"
 {% endhighlight %}
+<br>
+<h3>Check if certain files or directories have changed</h3>
+{% highlight shell %}
+#!/bin/bash
+
+if ! [ -f /var/opt/org_hashes ]; then
+        cur_file="/var/opt/org_hashes"
+else
+        cur_file="/var/opt/check_hashes"
+        rm -f $cur_file
+fi
+
+echo "$(sha256sum /etc/passwd)" >>              ${cur_file}
+echo "$(sha256sum /etc/shadow)" >>              ${cur_file}
+echo "$(sha256sum /etc/ssh/sshd_config)" >>     ${cur_file}
+echo "$(sha256sum /etc/crontab)" >>             ${cur_file}
+
+systemctl | grep service >> /tmp/service_list
+echo "$(sha256sum /tmp/service_list)" >>        ${cur_file} 
+rm -f /tmp/service_list
+
+for file in $(echo $PATH | sed 's/:/ /g'); do
+        ls -l $file > /tmp/$(echo $file | sed 's/\//_/g')
+        sha256sum /tmp/$(echo $file | sed 's/\//_/g') >> $cur_file
+        rm -f /tmp/$(echo $file | sed 's/\//_/g')
+done
+
+
+echo "`sha256sum $(which sshd)`" >>             ${cur_file}
+echo "`sha256sum $(which ps)`" >>               ${cur_file}
+echo "`sha256sum $(which netstat)`" >>          ${cur_file}
+echo "`sha256sum $(which lsof)`" >>             ${cur_file}
+echo "`sha256sum $(which ss)`" >>               ${cur_file}
+
+if [ -f /var/opt/check_hashes ]; then
+        if [ "$(sha256sum /var/opt/check_hashes | cut -d ' ' -f 1)" = "$(sha256sum /var/opt/org_hashes | cut -d ' ' -f 1)" ]; then
+                echo "Files are unchanged"
+        else
+                echo "Files Changed!"
+        fi
+fi
+
+{% endhighlight %}
 
 <h1 class="p-4">Windows Scripts</h1>
 <h3>Find Listening TCP Services</h3>
