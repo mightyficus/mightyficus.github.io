@@ -83,6 +83,78 @@ if [ -f /var/opt/check_hashes ]; then
 fi
 
 {% endhighlight %}
+<br>
+<h3>Generate an arbitrary amount of test files in a specified folder</h3>
+{% highlight shell %}
+#!/bin/sh
+
+# Make sure all vars are empty
+unset -v target_dir
+unset -v count
+
+# get all flags
+while getopts c:d:n:h: opt; do
+	case "${opt}" in
+		d) target_dir=$OPTARG;;
+		n) count=$OPTARG;;
+		c) content=$OPTARG;;
+		h) echo '\t-d: target directory\n\t-n: Number of files to generate\n\t-c: Content of file (defaults to "test")'; exit 0;;
+		*)
+			echo 'Error in command line parsing' >&2
+			exit 1
+	esac
+done
+
+shift "$(( OPTIND - 1 ))"
+
+# Make sure target directory and count were specified
+if [ -z "$target_dir" ] || [ -z "$count" ]; then
+	echo 'Incorrect usage: Please specify target directory (-d) and file count (-n)'
+	exit 1
+fi
+
+# Make sure content variable is populated
+if [ -z "$content" ]; then
+	content='test'
+fi
+
+# check if count is an int
+case $count in
+	''|*[!0-9]*) echo "$count is not an integer!"; exit 1;;
+	*) continue
+esac
+
+# If existing directory, make sure there are permissions
+if [ -d $target_dir ]; then
+	if ! [ -w $target_dir ]; then
+		echo "Permission denied!"
+		exit 1
+	fi
+fi
+
+# Make directory
+if mkdir -p $target_dir 2>/dev/null; then
+	# If the directory is made, make sure there are no pre-existing test files
+	cd $target_dir
+	rm test_*.txt 2> /dev/null
+	continue
+else
+	# Fails, usually means bad permissions
+	echo 'Cannot create directory!'
+	exit 1
+fi
+
+# POSIX shell compatible for loop
+i=0
+while [ "$i" -le "$count" ]; do
+	i=$((i+1))
+	echo "$content" > test_${i}.txt
+done
+unset -v i
+
+echo "Done creating ${count} files!"
+exit 0
+{% endhighlight %}
 
 <h1 class="p-4">Windows Scripts</h1>
 <h3>Find Listening TCP Services</h3>
