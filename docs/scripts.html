@@ -145,10 +145,10 @@ else
 fi
 
 # POSIX shell compatible for loop
-i=0
+i=1
 while [ "$i" -le "$count" ]; do
-	i=$((i+1))
 	echo "$content" > test_${i}.txt
+	i=$((i+1))
 done
 unset -v i
 
