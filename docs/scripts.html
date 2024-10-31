@@ -157,6 +157,7 @@ exit 0
 {% endhighlight %}
 
 <h1 class="p-4">Windows Scripts</h1>
+<h2>Powershell</h2>
 <h3>Find Listening TCP Services</h3>
 {% highlight powershell %}
 # Find all open Ports and report the local address, local port, remote address, remote port, and Owning Process
@@ -167,7 +168,8 @@ $connections | Format-Table -AutoSize LocalAddress, LocalPort, RemoteAddress, Re
     Expression={(Get-Process -Id $_.OwningProcess)}
 }
 {% endhighlight %}
-
+<br>
+<h2>Command Prompt</h2>
 <h3>Delete files older than X days</h3>
 {% highlight batchfile %}
 
