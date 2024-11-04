@@ -135,7 +135,7 @@ fi
 if [ -f "$content" ]; then
 	if ! [ -w "$content" ]; then
 		echo 'Insufficient Privileges, using content "test"'
-		content='test'oper
+		content='test'
 	else
 		echo "Using file content from: '$content'"
 		content="$(cat $content)"
@@ -183,6 +183,7 @@ unset -v i
 
 echo "Done creating ${count} files!"
 exit 0
+
 
 {% endhighlight %}
 
