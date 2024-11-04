@@ -87,20 +87,37 @@ fi
 <h3>Generate an arbitrary number of test files in a specified folder</h3>
 {% highlight shell %}
 #!/bin/sh
+# Generates an arbitrary number of files in a given directory
+# Default content of files is "test", but user can provide a custom string or the content of a file
 
 # Make sure all vars are empty
 unset -v target_dir
 unset -v count
+unset -v content
+
+show_help() {
+	echo "
+Usage: ./filegen <-d Directory> <-n Count> [-c String | Path]
+  -d:\tTarget directory
+  -n:\tNumber of files to generate
+  -c:\tContent of generated file, can be custom string or content of given file (defaults to "test")
+
+For Example: ./filegen.sh -d test_directory -n 100 -c "Test Content"
+
+  -h:\tDisplays this message
+"
+}
 
 # get all flags
-while getopts c:d:n:h: opt; do
+while getopts ":c:d:n:h" opt; do
 	case "${opt}" in
 		d) target_dir=$OPTARG;;
 		n) count=$OPTARG;;
 		c) content=$OPTARG;;
-		h) echo '\t-d: target directory\n\t-n: Number of files to generate\n\t-c: Content of file (defaults to "test")'; exit 0;;
+		h) show_help; exit 0;;
 		*)
-			echo 'Error in command line parsing' >&2
+			echo 'Incorrect Usage:' >&2
+			show_help
 			exit 1
 	esac
 done
@@ -110,10 +127,22 @@ shift "$(( OPTIND - 1 ))"
 # Make sure target directory and count were specified
 if [ -z "$target_dir" ] || [ -z "$count" ]; then
 	echo 'Incorrect usage: Please specify target directory (-d) and file count (-n)'
+	show_help
 	exit 1
 fi
 
-# Make sure content variable is populated
+# Check if $content is a file, if so read file contents into variable
+if [ -f "$content" ]; then
+	if ! [ -w "$content" ]; then
+		echo 'Insufficient Privileges, using content "test"'
+		content='test'oper
+	else
+		echo "Using file content from: '$content'"
+		content="$(cat $content)"
+	fi
+fi
+
+# If $content wasn't a file or file was empty, make sure content variable is populated
 if [ -z "$content" ]; then
 	content='test'
 fi
@@ -154,6 +183,7 @@ unset -v i
 
 echo "Done creating ${count} files!"
 exit 0
+
 {% endhighlight %}
 
 <h1 class="p-4">Windows Scripts</h1>
