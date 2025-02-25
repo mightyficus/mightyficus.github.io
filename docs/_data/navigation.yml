@@ -14,7 +14,7 @@
   category: Code Examples
   link: /scripts.html
   dropdown: "False"
-- name: Blog Posts
-  category: main
-  link: /blog.html
-  dropdown: "False"
+#- name: Blog Posts
+#  category: main
+#  link: /blog.html
+#  dropdown: "False"
