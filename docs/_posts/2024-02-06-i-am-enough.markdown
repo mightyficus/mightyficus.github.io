@@ -19,7 +19,7 @@ If you couldn't tell, I'm stressed about jobs. It's kind of depressing sometimes
 But sitting here, writing all of my depressing thoughts down, I'm remembering something my dad used to say all the time. 
 
 ## You are Enough.
-
+<br>
 And that's the thing. I am. Despite all the crap I tell myself sometimes. Despite the fear and the uncertainty. Despite the recruiters that turn me down, the contacts I've made that no longer return my emails. I've accomplished more than past-Cooper ever thought I could. I've done more work, learned more things, done more with my hands and mind than I ever could've hoped. What other people say, or more accurately what I __think__ other people say, doesn't matter. I'm proud of the work I've done and am doing. I'm doing great, and and some point, probably sometime soon, there's going to be people who see how much I've done, and they're going to want me to work with them.
 
 So here's what's going to happen. I'm going to keep applying for jobs. I'm going to reach out to all of the people I've networked with. I'm going to keep up with my hobbies and extracurriculars. I'm going to graduate. And I'm going to start a job that I'll enjoy doing. And it's going to be incredible.
