@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Corporate Greed Made Me Do It"
-date:   2025-06-07 20:50:00 -0700
+date:   2025-06-07 20:00:00 -0700
 categories: general
 author: Cooper Hopkin
 ---

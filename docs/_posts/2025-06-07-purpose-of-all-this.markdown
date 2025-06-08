@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "The Purpose of All This"
-date:   2023-06-07 08:00:00 -0700
+date:   2025-06-07 08:00:00 -0700
 categories: general
 author: Cooper Hopkin
 ---
