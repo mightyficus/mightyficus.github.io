@@ -34,7 +34,6 @@ markdown: kramdown
 highlighter: rouge
 
 kramdown:
-  input: GFM
   auto_ids: true
   math_engine: mathjax
   syntax_highlighter: rouge
@@ -43,6 +42,17 @@ kramdown:
 remote_theme: pages-themes/midnight@v0.2.0
 plugins:
   - jekyll-feed
+  - jekyll-spaceship
+  - jekyll-responsive-image
+  - jekyll-remote-theme
+
+#  jekyll-responsive-image config
+responsive-image:
+  template: _includes/imager-js.html
+  sizes:
+    - width: 320
+    - width: 480
+    - width: 800
 
 defaults:
   - scope:

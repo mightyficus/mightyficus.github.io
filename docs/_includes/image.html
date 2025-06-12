@@ -1,0 +1,23 @@
+<figure
+    style="{{ include.style }}
+            padding: 10px;
+            border-top: 1px solid #999;
+            border-right: 2px solid #555;
+            border-bottom: 2px solid #555;
+            border-left: 1px solid #999;
+          "
+  >
+  <img
+    src="{{ include.src }}"
+    alt="{{ include.alt }}"
+    class="img-class mx-auto d-block"
+    {% if include.img_width %}
+    width="{{ include.img_width }}"
+    {% endif %}
+  />
+  <figcaption
+    style="text-align: center;"
+    >
+    <sup><em> {{ include.caption }} </em></sup>
+  </figcaption>
+</figure>
