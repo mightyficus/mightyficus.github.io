@@ -28,7 +28,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 domain: www.mightyficus.dev
 url: https://www.mightyficus.dev # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb
-github_username:  coopman66
+github_username:  mightyficus
 
 markdown: kramdown
 highlighter: rouge
@@ -39,12 +39,13 @@ kramdown:
   syntax_highlighter: rouge
 
 # Build settings
-remote_theme: pages-themes/midnight@v0.2.0
+# remote_theme: mattgraham/midnight
+theme: jekyll-theme-midnight
 plugins:
   - jekyll-feed
   - jekyll-spaceship
   - jekyll-responsive-image
-  - jekyll-remote-theme
+#  - jekyll-remote-theme
 
 #  jekyll-responsive-image config
 responsive-image:
@@ -59,6 +60,8 @@ defaults:
       path: "assets/images"
     values:
       image: true
+sass:
+  silence_deprecations: [import]
 
 # Exclude from processing.
 # The following items will not be processed, by default.
